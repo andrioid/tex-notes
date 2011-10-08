@@ -1,0 +1,124 @@
+\documentclass[a4paper]{article}
+\usepackage[T1]{fontenc} % Font encoding
+\usepackage[utf8]{inputenc} % Input encoding in utf8 (modern text editors)
+\usepackage{times} % Readable font
+\usepackage{titlesec} % Title handling for sections
+\usepackage{amsmath} % Math support
+\usepackage{mdwlist}  % Compactlist functions
+\usepackage[pdftex]{graphicx} % Graphic includes
+\usepackage{listings} % listings
+\usepackage{pifont} % symbols
+\usepackage{underscore} % no more \_ crap
+%\usepackage[left=2cm,top=2cm,right=2cm,bottom=1.5cm,a4paper]{geometry} % margins
+\usepackage[left=2cm,right=7cm,vmargin=2cm,nohead,marginparwidth=5cm]{geometry}
+\usepackage{fancyhdr} % header/footer
+%\usepackage{wrapfig} % Wrapping for figures
+\usepackage{subfig} % Sub figures
+\usepackage{comment} % Comments
+\usepackage{lastpage} % last page
+
+\usepackage{changepage}% provides the adjustwidth environment 2011-10-2
+
+\usepackage[pdftex]{hyperref} % include hyperlinks in pdf file
+
+\usepackage{siunitx}
+\usepackage[american]{circuitikz}
+\usepackage{tikz} % TikZ
+\pgfdeclarelayer{background} % TikZ layer setup
+\pgfdeclarelayer{foreground} % TikZ layer setup
+\pgfsetlayers{background,main,foreground} % TikZ layer setup
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,shapes,petri,trees,mindmap,shapes.multipart,shapes.symbols,shadows,matrix} % TikZ modules
+
+%% Colors %%
+
+\definecolor{topc}{RGB}{0,143,206}
+\definecolor{botc}{RGB}{0,53,93}
+\definecolor{darkblue}{RGB}{26,9,82}
+
+%% PDF Setup %%
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=true,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=true,      % page fit to window when opened
+    %pdftitle={#1},    % title
+    %pdfauthor={#2},     % author
+    %pdfsubject={#1},   % subject of the document
+    pdfcreator={Andrioid's LaTeX Notes},   % creator of the document
+    %pdfproducer={#2}, % producer of the document
+    %pdfkeywords={lan,sensor,framework}, % list of keywords
+    pdfnewwindow=false,      % links in new window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=black,          % color of internal links
+    citecolor=black,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=darkblue           % color of external links
+}
+
+%% Misc Settings %%
+\setlength{\parindent}{0pt} % Paragraph indent 0
+
+
+%% Title Customizations %%
+
+\titleformat{\section}[hang]{\bfseries}
+ {}{0pt}{\huge}[{\titlerule[0.5pt]}]
+
+\titleformat{\subsection}[hang]{\bfseries}
+ {}{0pt}{\Large}
+
+\titleformat{\subsubsection}[hang]{\bfseries}
+ {}{0pt}{\large}
+
+
+%% Custom Commands %%
+
+\renewcommand{\title}[1]{\begin{center}\Huge #1\\ \end{center}}
+\newcommand{\super}[1]{\textsuperscript{#1}}
+\newcommand{\splitline}[2]{%
+	\begin{minipage}[t]{.55\textwidth}
+	#1
+	\end{minipage}%
+	\hfill
+	\begin{minipage}[t]{.35\textwidth}
+	#2
+	\end{minipage}
+}
+
+\newcommand{\newconcept}[4]{ % Name, Metaphor, Relevance, Example
+	\textbf{#1}
+	\begin{description*}
+		\item[Metaphor:] #2
+		\item[Relevance:] #3
+		\item[Example:] #4
+	\end{description*}
+}
+
+% The following code should be used *after* any changes to the margins and
+% page layout are made (e.g., after the geometry package has been loaded).
+\newlength{\fullwidthlen}
+\setlength{\fullwidthlen}{\marginparwidth}
+\addtolength{\fullwidthlen}{\marginparsep}
+
+\newenvironment{fullwidth}{%
+  \begin{adjustwidth*}{}{-\fullwidthlen}%
+}{%
+  \end{adjustwidth*}%
+}
+
+%\newframedtheorem{theorem}{Theorem}
+\newtheorem{theorem}{Theorem}
+
+
+%% Input TikZ shorthands %%
+\input{src/tikz.tex}
+
+%------------------------------------------------------------------------------
+%% bipole
+%------------------------------------------------------------------------------
+\newlength{\compSize}
+\setlength{\compSize}{0.8cm}
+\ctikzset{bipoles/length=\compSize}
+\newcommand{\bipole}[3]{coordinate (#1) to[#2] ($(#1)+(#3)$)}
+

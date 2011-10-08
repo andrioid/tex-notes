@@ -1,0 +1,7 @@
+== Note Taking Environment in LaTeX ==
+- Author: Andri Oskarsson
+
+= Usage =
+Place single .tex files in the root directory and run 'make'. Resulting PDF files should be placed in pdf/
+
+Note: If you need any includes, you must use a sub-directory. Each file should compile on its own.
