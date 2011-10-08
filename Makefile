@@ -16,6 +16,9 @@ tex: $(wildcard *.tex)
 	cp $(TEMP)/*.pdf $(RELEASE)
 all: tex
 
+ubuntu:
+	sudo apt-get install rubber texlive-full
+
 clean:
 	rm -rf $(TEMP)/* $(RELEASE)/*
 
